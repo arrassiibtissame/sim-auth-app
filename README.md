@@ -144,14 +144,5 @@ You can modify the styles in each component's `StyleSheet` to match your preferr
 3. **Metro bundler issues:**
    - Reset the cache: `npx expo start -c`
 
-## Next Steps
 
-This is a basic authentication app. You can extend it by:
-
-1. Adding real backend authentication
-2. Implementing user registration with backend
-3. Adding password recovery
-4. Including biometric authentication
-5. Adding more screens and features
-6. Implementing state management (Redux, Context API)
 
