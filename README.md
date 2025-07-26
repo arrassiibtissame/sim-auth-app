@@ -1,148 +1,196 @@
-# Simple React Native Authentication App
+# Application de Collecte de Lait (Milk Collection App)
 
-A simple React Native app with static authentication built using Expo.
+Une application mobile React Native avec SQLite pour la gestion des collectes de lait par les agents d'une compagnie laitière.
 
-## Features
+## Fonctionnalités
 
-- Clean and modern UI design
-- Static authentication (username/password hardcoded)
-- User registration with form validation
-- Navigation between Login, SignUp, and Home screens
-- Enhanced home screen with dashboard-like interface
-- Logout functionality with confirmation
-- Responsive design with proper keyboard handling
+### 🏗️ Architecture de la Base de Données
 
-## Static Credentials
+L'application gère les entités suivantes :
 
-- **Username:** `admin`
-- **Password:** `password123`
+- **Utilisateurs (Users)** : Agents de collecte et conducteurs
+- **Adhérents (Members)** : Propriétaires des fermes
+- **Routes (Tournées)** : Itinéraires de collecte
+- **Unités de Production** : Installations des adhérents
+- **Bacs à Lait (MilkTanks)** : Conteneurs de stockage du lait
+- **Missions** : Assignations des agents aux routes
+- **Collectes (Collections)** : Opérations de collecte de lait
+- **Détails de Collecte** : Enregistrements détaillés avec codes-barres
 
-## Getting Started
+### 📱 Fonctionnalités de l'Application
 
-### Prerequisites
+1. **Authentification** : Connexion par nom d'utilisateur
+2. **Tableau de bord** : Vue d'ensemble des statistiques et activités
+3. **Gestion des missions** : Visualisation des missions assignées
+4. **Gestion des collectes** : 
+   - Suivi des collectes en cours
+   - Ajout de détails de collecte avec codes-barres
+   - Finalisation des collectes
+5. **Profil utilisateur** : Informations et paramètres
 
-- Node.js (v14 or higher)
-- npm or yarn
-- Expo CLI (optional, but recommended)
+## Installation et Configuration
+
+### Prérequis
+
+- Node.js (v16 ou supérieur)
+- npm ou yarn
+- Expo CLI
+- Android Studio ou Xcode (pour les émulateurs)
 
 ### Installation
 
-1. Navigate to the project directory:
-   ```bash
-   cd SimpleAuthApp
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-### Running the App
-
-#### Option 1: Using Expo Go (Recommended for beginners)
-
-1. Install the Expo Go app on your phone from the App Store or Google Play Store
-
-2. Start the development server:
-   ```bash
-   npm start
-   ```
-
-3. Scan the QR code with your phone's camera (iOS) or the Expo Go app (Android)
-
-#### Option 2: Using Web Browser
-
-1. Start the development server:
-   ```bash
-   npm run web
-   ```
-
-2. The app will open in your default web browser
-
-#### Option 3: Using Android Emulator
-
-1. Make sure you have Android Studio and an emulator set up
-
-2. Start the development server:
-   ```bash
-   npm run android
-   ```
-
-## How to Use
-
-1. **Login Screen:**
-   - Enter the username: `admin`
-   - Enter the password: `password123`
-   - Tap "Sign In"
-   - Or tap "Sign Up" to create a new account
-
-2. **Sign Up Screen:**
-   - Fill in username, email, password, and confirm password
-   - Form validation ensures data quality
-   - After successful registration, you'll be redirected to login
-
-3. **Home Screen:**
-   - Dashboard with user stats and quick actions
-   - Profile, Settings, and Help options (coming soon)
-   - Tap "Logout" to return to the login screen
-
-## Project Structure
-
-```
-SimpleAuthApp/
-├── components/
-│   ├── LoginScreen.js    # Login screen with authentication logic
-│   ├── SignUpScreen.js   # User registration screen with validation
-│   └── HomeScreen.js     # Enhanced home screen with dashboard
-├── App.js                # Main app with navigation setup
-├── package.json          # Dependencies and scripts
-└── README.md            # This file
+1. **Cloner le repository**
+```bash
+git clone <repository-url>
+cd MilkCollectionApp
 ```
 
-## Technologies Used
-
-- React Native
-- Expo
-- React Navigation (Stack Navigator)
-- React Hooks (useState)
-
-## Customization
-
-### Changing Static Credentials
-
-To change the username and password, edit the constants in `components/LoginScreen.js`:
-
-```javascript
-const STATIC_USERNAME = 'your_username';
-const STATIC_PASSWORD = 'your_password';
+2. **Installer les dépendances**
+```bash
+npm install
 ```
 
-### Styling
+3. **Démarrer l'application**
+```bash
+npm start
+```
 
-The app uses a clean, modern design with:
-- Light gray background (`#f5f5f5`)
-- Blue accent color (`#007AFF`)
-- Green accent for sign-up (`#34C759`)
-- Red accent for logout (`#FF3B30`)
-- Rounded corners and shadows
-- Responsive layout
+4. **Lancer sur un émulateur ou appareil**
+```bash
+# Android
+npm run android
 
-You can modify the styles in each component's `StyleSheet` to match your preferred design.
+# iOS
+npm run ios
+```
 
-## Troubleshooting
+## Utilisation
 
-### Common Issues
+### Première utilisation
 
-1. **Navigation not working:**
-   - Make sure all navigation dependencies are installed
-   - Run `npm install` to ensure all packages are up to date
+L'application se charge automatiquement avec des données d'exemple lors du premier démarrage :
 
-2. **App not starting:**
-   - Clear the cache: `npx expo start --clear`
-   - Restart the development server
+**Utilisateurs de test :**
+- Jean Dupont (actif)
+- Marie Martin (actif)
+- Pierre Durand (actif)
+- Sophie Lefebvre (inactif)
 
-3. **Metro bundler issues:**
-   - Reset the cache: `npx expo start -c`
+### Connexion
+
+1. Ouvrez l'application
+2. Entrez un nom d'utilisateur (ex: "Jean Dupont")
+3. Appuyez sur "Se connecter"
+
+### Navigation
+
+L'application utilise une navigation par onglets :
+
+- **Tableau de bord** : Vue d'ensemble et statistiques
+- **Missions** : Liste des missions assignées
+- **Collectes** : Gestion des collectes de lait
+- **Profil** : Paramètres utilisateur
+
+### Gestion des Collectes
+
+1. **Voir les collectes** : Onglet "Collectes"
+2. **Voir les détails** : Toucher une collecte pour voir les détails
+3. **Ajouter des détails** : 
+   - Saisir les codes-barres A et B
+   - Ajouter un code qualité (optionnel)
+   - Appuyer sur "Ajouter Détail"
+4. **Terminer une collecte** : Appuyer sur "Terminer la Collecte"
+
+## Structure du Projet
+
+```
+src/
+├── components/          # Composants réutilisables
+├── context/            # Contextes React (Auth)
+├── database/           # Service et repositories SQLite
+│   ├── DatabaseService.ts
+│   └── repositories/   # Repositories pour chaque entité
+├── models/             # Interfaces TypeScript
+├── navigation/         # Configuration de navigation
+├── screens/            # Écrans de l'application
+├── utils/              # Utilitaires (seeding, etc.)
+└── App.tsx            # Point d'entrée
+```
+
+## Base de Données
+
+### Schéma Principal
+
+L'application utilise SQLite avec les tables suivantes :
+
+- `users` : Agents de collecte
+- `members` : Adhérents (fermes)
+- `routes` : Routes de collecte
+- `production_units` : Unités de production
+- `milk_tanks` : Bacs à lait
+- `missions` : Missions assignées
+- `collections` : Collectes de lait
+- `collection_details` : Détails des collectes
+
+### Initialisation des Données
+
+Les données d'exemple sont automatiquement chargées au premier démarrage via `src/utils/seedDatabase.ts`.
+
+## Technologies Utilisées
+
+- **React Native** : Framework mobile cross-platform
+- **Expo** : Plateforme de développement
+- **Expo SQLite** : Base de données locale
+- **React Navigation** : Navigation entre écrans
+- **TypeScript** : Typage statique
+- **React Native Paper** : Composants UI
+
+## Développement
+
+### Scripts Disponibles
+
+- `npm start` : Démarrer le serveur de développement
+- `npm run android` : Lancer sur Android
+- `npm run ios` : Lancer sur iOS
+- `npm run web` : Lancer sur navigateur web
+
+### Architecture
+
+L'application suit une architecture modulaire avec :
+
+- **Séparation des préoccupations** : UI, logique métier, accès aux données
+- **Pattern Repository** : Abstraction de l'accès aux données
+- **Context API** : Gestion de l'état global (authentification)
+- **TypeScript** : Typage fort pour la maintenabilité
+
+### Ajout de Nouvelles Fonctionnalités
+
+1. **Nouvelle entité** :
+   - Ajouter l'interface dans `src/models/`
+   - Créer le repository dans `src/database/repositories/`
+   - Mettre à jour le schéma de base de données
+
+2. **Nouvel écran** :
+   - Créer le composant dans `src/screens/`
+   - Ajouter la route dans `src/navigation/`
+
+## Fonctionnalités Futures
+
+- Scanner de codes-barres
+- Synchronisation avec serveur distant
+- Mode hors-ligne avancé
+- Rapports et statistiques détaillées
+- Géolocalisation des collectes
+- Photos des bacs à lait
+- Notifications push
+
+## Support
+
+Pour toute question ou problème, contactez l'équipe de développement.
+
+## Licence
+
+© 2024 Compagnie Laitière - Tous droits réservés
 
 
 
